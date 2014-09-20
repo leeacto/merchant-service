@@ -2,8 +2,8 @@ class MerchantsApi < Grape::API
 
   helpers do
     def load_merchant!
-      Napa::Logger.logger.info "Retrieving Merchant: #{params[:id]}"
-      merchant =  Merchant.where(id: params[:id]).first
+      Napa::Logger.logger.info "Retrieving Merchant by hashed screen name: #{params[:id]}"
+      merchant =  Merchant.where(hashed_screen_name: params[:id]).first
       if merchant
         return merchant
       else
@@ -22,7 +22,7 @@ class MerchantsApi < Grape::API
     represent merchants, with: MerchantRepresenter
   end
 
-  desc 'Create an merchant'
+  desc 'Create a merchant'
   params do
     requires :name, type: String, desc: "The Merchant name"
     requires :email_address, type: String, desc: "The Merchant's email address"
@@ -45,13 +45,13 @@ class MerchantsApi < Grape::API
     requires :id, desc: 'ID of the merchant'
   end
   route_param :id do
-    desc 'Get an merchant'
+    desc 'Get a merchant'
     get do
       merchant = load_merchant!
       represent merchant, with: MerchantRepresenter
     end
 
-    desc 'Update an merchant'
+    desc 'Update a merchant'
     params do
       optional :name, type: String, desc: "The Merchant name"
       optional :email_address, type: String, desc: "The Merchant's email address"

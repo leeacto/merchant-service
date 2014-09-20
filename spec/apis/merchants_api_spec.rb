@@ -8,15 +8,15 @@ describe MerchantsApi do
   include Rack::Test::Methods
 
   describe 'get /:id' do
-    context 'with valid attributes' do
+    context 'with valid hashed_screen_name' do
       it 'returns the correct merchant' do
         m = FactoryGirl.create(:merchant)
-        get "/merchants/#{m.id}"
+        get "/merchants/#{m.hashed_screen_name}"
         expect(parsed_response[:data].id).to eq m.id.to_s
       end
     end
 
-    context 'with invalid attributes' do
+    context 'with invalid hashed_screen_name' do
       it 'returns Merchant Not Found error' do
         get "/merchants/0"
         expected_error = Hashie::Mash.new({ code: 'api_error', message: 'Merchant Not Found' })
@@ -53,6 +53,5 @@ describe MerchantsApi do
       end
     end
   end
-
 
 end
