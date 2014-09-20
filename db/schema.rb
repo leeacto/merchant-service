@@ -9,3 +9,15 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema.define(version: 20140920132325) do
+
+  create_table "merchants", force: true do |t|
+    t.string   "name"
+    t.integer  "ttl"
+    t.string   "hashed_screen_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+end
