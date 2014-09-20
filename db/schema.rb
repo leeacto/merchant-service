@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140920132325) do
+ActiveRecord::Schema.define(version: 20140920180449) do
 
   create_table "merchants", force: true do |t|
-    t.string   "name"
-    t.integer  "ttl"
-    t.string   "hashed_screen_name"
+    t.string   "name",                                     null: false
+    t.integer  "ttl",                          default: 0, null: false
+    t.integer  "hashed_screen_name", limit: 8, default: 0, null: false
+    t.string   "email_address",                            null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
