@@ -58,7 +58,6 @@ class MerchantsApi < Grape::API
       optional :ttl, type: Integer, desc: "Number of hours between customer check-ins"
     end
     put do
-      # fetch merchant record and update attributes.  exceptions caught in app.rb
       merchant = load_merchant!
       merchant.update_attributes!(permitted_params)
       represent merchant, with: MerchantRepresenter
