@@ -1,10 +1,8 @@
 .DS_Store
-.env
 .vagrant
 .rspec
-.env
 !.env.test
-log/*
+log/*.log
 tmp/*
 coverage
 !.keep
